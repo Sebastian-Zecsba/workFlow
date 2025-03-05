@@ -5,6 +5,8 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ProjectAssignmentsModule } from './project_assignments/project_assignments.module';
+import { RoleModule } from './role/role.module';
+import { SeederModule } from './seeder/seeder.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -16,7 +18,8 @@ import { ProjectAssignmentsModule } from './project_assignments/project_assignme
   }),
   AuthModule,
   ProjectsModule,
-  ProjectAssignmentsModule
+  ProjectAssignmentsModule,
+  RoleModule
 ],
   controllers: [],
   providers: [],

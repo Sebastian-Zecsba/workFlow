@@ -1,5 +1,5 @@
-import { Project } from "src/projects/entities/project.entity";
-import { ProjectAssignment } from "src/project_assignments/entities/project_assignment.entity";
+import { Project } from "../../projects/entities/project.entity";
+import { ProjectAssignment } from "../../project_assignments/entities/project_assignment.entity";
 import { BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

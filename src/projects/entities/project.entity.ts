@@ -1,5 +1,5 @@
-import { Auth } from "src/auth/entities/auth.entity";
-import { ProjectAssignment } from "src/project_assignments/entities/project_assignment.entity";
+import { Auth } from "../../auth/entities/auth.entity";
+import { ProjectAssignment } from "../../project_assignments/entities/project_assignment.entity";
 import { BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 
 @Entity()

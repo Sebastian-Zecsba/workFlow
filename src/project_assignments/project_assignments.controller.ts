@@ -1,34 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
 import { ProjectAssignmentsService } from './project_assignments.service';
 import { CreateProjectAssignmentDto } from './dto/create-project_assignment.dto';
-import { UpdateProjectAssignmentDto } from './dto/update-project_assignment.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('project-assignments')
 export class ProjectAssignmentsController {
   constructor(private readonly projectAssignmentsService: ProjectAssignmentsService) {}
 
   @Post()
-  create(@Body() createProjectAssignmentDto: CreateProjectAssignmentDto) {
-    return this.projectAssignmentsService.create(createProjectAssignmentDto);
-  }
+  @UseGuards(AuthGuard('jwt'))
+  create(@Body() createProjectAssignmentDto: CreateProjectAssignmentDto){
 
-  @Get()
-  findAll() {
-    return this.projectAssignmentsService.findAll();
+    return this.projectAssignmentsService.create(createProjectAssignmentDto) ;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.projectAssignmentsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectAssignmentDto: UpdateProjectAssignmentDto) {
-    return this.projectAssignmentsService.update(+id, updateProjectAssignmentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.projectAssignmentsService.remove(+id);
+  @UseGuards(AuthGuard('jwt'))
+  getById(@Param('id') id: string){
+    return this.projectAssignmentsService.getById(+id)
   }
 }
