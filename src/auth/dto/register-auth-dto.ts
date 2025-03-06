@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, MinLength } from "class-validator";
 
 export class RegisterAuthDTO {
     
@@ -22,4 +22,16 @@ export class RegisterAuthDTO {
     @IsNotEmpty({ message: 'El apellido es obligatorio' })
     @IsString({ message: 'El apellido debe ser una cadena de texto' })
     last_name: string;
+
+    @IsString()
+    @IsOptional()
+    organizationName?: string;
+
+    @IsNumber()
+    @IsOptional()
+    orgId?: number;
+
+    @IsString()
+    @IsOptional()
+    inviteCode?: string;
 }

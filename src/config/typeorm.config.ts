@@ -11,7 +11,7 @@ export const typeOrmConfig = (configService: ConfigService) : TypeOrmModuleOptio
     database: configService.get('DATABASE_NAME'),
     ssl: true,
     logging: false,
-    synchronize: false,
+    synchronize: true,
     entities: [join(__dirname + '../../**/*.entity.{js,ts}')],
     migrations: [join(__dirname, 'src', 'migrations', '*.ts')],
 })

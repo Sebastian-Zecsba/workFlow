@@ -3,10 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { typeOrmConfig } from './config/typeorm.config';
 import { AuthModule } from './auth/auth.module';
-import { ProjectsModule } from './projects/projects.module';
-import { ProjectAssignmentsModule } from './project_assignments/project_assignments.module';
-import { RoleModule } from './role/role.module';
-import { SeederModule } from './seeder/seeder.module';
+import { OrganizationsModule } from './organizations/organizations.module';
+
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -17,9 +15,7 @@ import { SeederModule } from './seeder/seeder.module';
     inject: [ConfigService]
   }),
   AuthModule,
-  ProjectsModule,
-  ProjectAssignmentsModule,
-  RoleModule
+  OrganizationsModule
 ],
   controllers: [],
   providers: [],

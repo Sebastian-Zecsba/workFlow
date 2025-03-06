@@ -1,6 +1,5 @@
-import { Project } from "../../projects/entities/project.entity";
-import { ProjectAssignment } from "../../project_assignments/entities/project_assignment.entity";
-import { BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Organization } from "src/organizations/entities/organization.entity";
+import { BeforeUpdate, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Auth {
@@ -22,6 +21,15 @@ export class Auth {
     @Column({ type: 'varchar', length: 60, nullable: false })
     last_name: string;
 
+    @Column({ type: 'varchar', length: 60, nullable: true })
+    organizationName?: string;
+
+    @Column({ type: 'int', nullable: true })
+    orgId?: number;
+
+    @Column({ type: 'varchar', length: 60, nullable: true })
+    inviteCode?: string;
+
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
 
@@ -33,9 +41,7 @@ export class Auth {
         this.updated_at = new Date();
     }
 
-    @OneToMany(() => Project, (project) => project.created_by)
-    projects: Project[];
-
-    @OneToMany(() => ProjectAssignment, (assignment) => assignment.user)
-    assignments: ProjectAssignment[];
+    @ManyToOne(() => Organization, organization => organization.users)
+    @JoinColumn({name: 'organization_id'})
+    organization: Organization;
 }
