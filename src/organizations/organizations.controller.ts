@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { OrganizationsService } from './organizations.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { InvitationDTO } from './dto/create-invitation.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('organizations')
 export class OrganizationsController {
@@ -10,6 +12,12 @@ export class OrganizationsController {
   @Post()
   create(@Body() createOrganizationDto: CreateOrganizationDto) {
     return this.organizationsService.create(createOrganizationDto);
+  }
+
+  @Post(':orgId/invitations')
+  @UseGuards(AuthGuard('jwt'))
+  invitation(@Param('orgId') orgId: number, @Body() invitation: InvitationDTO){
+    return this.organizationsService.invitation(orgId, invitation)
   }
 
   @Get()

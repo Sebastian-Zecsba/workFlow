@@ -1,5 +1,4 @@
-import { Optional } from "@nestjs/common"
-import { IsNotEmpty, IsString } from "class-validator"
+import { IsDateString, IsNotEmpty, IsOptional, IsString } from "class-validator"
 
 export class CreateOrganizationDto {
 
@@ -7,7 +6,19 @@ export class CreateOrganizationDto {
     @IsString()
     name: string
 
-    @Optional()
+    @IsOptional()
     plan?: string
+
+    @IsOptional()
+    @IsString()
+    subscription_status: string;
+
+    @IsOptional()
+    @IsDateString()
+    billing_cycle_start?: string;
+    
+    @IsOptional()
+    @IsDateString()
+    billing_cycle_end?: string;
 
 }

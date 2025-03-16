@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { typeOrmConfig } from './config/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { OrganizationsModule } from './organizations/organizations.module';
+import { PlanModule } from './plan/plan.module';
+import { InvitationsModule } from './invitations/invitations.module';
 
 
 @Module({
@@ -15,7 +17,9 @@ import { OrganizationsModule } from './organizations/organizations.module';
     inject: [ConfigService]
   }),
   AuthModule,
-  OrganizationsModule
+  OrganizationsModule,
+  PlanModule,
+  InvitationsModule
 ],
   controllers: [],
   providers: [],

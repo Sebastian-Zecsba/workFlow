@@ -25,6 +25,14 @@ export class RegisterAuthDTO {
 
     @IsString()
     @IsOptional()
+    planName?: string;
+
+    @IsString()
+    @IsOptional()
+    role?: string;
+
+    @IsString()
+    @IsOptional()
     organizationName?: string;
 
     @IsNumber()

@@ -7,6 +7,8 @@ import { JwtStrategy } from './jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Auth } from './entities/auth.entity';
 import { Organization } from 'src/organizations/entities/organization.entity';
+import { Plan } from 'src/plan/entities/plan.entity';
+import { Invitation } from 'src/invitations/entities/invitation.entity';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { Organization } from 'src/organizations/entities/organization.entity';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([Auth, Organization]),
+    TypeOrmModule.forFeature([Auth, Organization, Plan, Invitation]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

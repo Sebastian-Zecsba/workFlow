@@ -21,9 +21,12 @@ export class Auth {
     @Column({ type: 'varchar', length: 60, nullable: false })
     last_name: string;
 
+    @Column({ type: 'varchar', length: 50, default: 'member' })
+    role: string;
+
     @Column({ type: 'varchar', length: 60, nullable: true })
     organizationName?: string;
-
+    
     @Column({ type: 'int', nullable: true })
     orgId?: number;
 
